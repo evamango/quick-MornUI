@@ -47,6 +47,8 @@ package morn.core.components {
 		protected var _centerY:Number;
 		
 		public function Component() {
+			addEventListener(Event.ADDED_TO_STAGE,onAddedToStage);
+			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
 			mouseChildren = tabEnabled = tabChildren = false;
 			preinitialize();
 			createChildren();
@@ -65,8 +67,7 @@ package morn.core.components {
 		
 		/**初始化，在此子对象已被创建，可以对子对象进行修改*/
 		protected function initialize():void {
-			addEventListener(Event.ADDED_TO_STAGE,onAddedToStage);
-			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+			
 		}
 		
 		/**延迟调用，在组件被显示在屏幕之前调用*/

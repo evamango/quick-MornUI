@@ -1,0 +1,1 @@
+"D:\quick-MornUI\MUIExporter\MUIExporter.exe" -s "D:\quick-MornUI\MornProj\morn\pages\UISample.xml" -o "D:\quick-MornUI\sample\ui\res\debug"

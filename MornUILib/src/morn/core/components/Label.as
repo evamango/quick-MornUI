@@ -44,6 +44,7 @@ package morn.core.components {
 		}
 		
 		override protected function initialize():void {
+			super.initialize();
 			_format = _textField.defaultTextFormat;
 			_format.font = Styles.fontName;
 			_format.size = Styles.fontSize;

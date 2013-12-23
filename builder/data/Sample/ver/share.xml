@@ -1,0 +1,11 @@
+<lib>
+  <bitmapdata class="png.share.bg_rank_title" file="D:\quick-MornUI\MornProj\morn\assets\share\bg_rank_title.png" compression="false" quality="80" create="138129946547016047"/>
+  <bitmapdata class="png.share.bg_style3" file="D:\quick-MornUI\MornProj\morn\assets\share\bg_style3.png" compression="false" quality="80" create="13812994667853398"/>
+  <bitmapdata class="png.share.bImg" file="D:\quick-MornUI\MornProj\morn\assets\share\bImg.png" compression="false" quality="80" create="138776937616142241"/>
+  <bitmapdata class="png.share.btn_green" file="D:\quick-MornUI\MornProj\morn\assets\share\btn_green.png" compression="false" quality="80" create="13872706583288496"/>
+  <bitmapdata class="png.share.btn_red" file="D:\quick-MornUI\MornProj\morn\assets\share\btn_red.png" compression="false" quality="80" create="13869923982446727"/>
+  <bitmapdata class="png.share.icon_close" file="D:\quick-MornUI\MornProj\morn\assets\share\icon_close.png" compression="false" quality="80" create="13812994677121999"/>
+  <bitmapdata class="png.share.img_bk_rank" file="D:\quick-MornUI\MornProj\morn\assets\share\img_bk_rank.png" compression="false" quality="80" create="138129946546695426"/>
+  <bitmapdata class="png.share.label" file="D:\quick-MornUI\MornProj\morn\assets\share\label.png" compression="false" quality="80" create="13812994654561765"/>
+  <bitmapdata class="png.share.textinput" file="D:\quick-MornUI\MornProj\morn\assets\share\textinput.png" compression="false" quality="80" create="13812994531692088"/>
+</lib>
