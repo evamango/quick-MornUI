@@ -2,12 +2,22 @@
 <uiComp>
 	<!-- drag:0-不能拖动，1-水平，2-垂直，3-全部 -->
 	<Base>
-		<prop name="var" tips="命名" type="string" default="" />
+		<!-- <prop name="var" tips="命名" type="string" default="" /> -->
 		<prop name="name" tips="名称" type="string" default="" />
 		<prop name="x" tips="x坐标" type="int" default="0" />
 		<prop name="y" tips="y坐标" type="int" default="0" />
+		<prop name="px" tips="x坐标百分比" type="int" default="" />
+		<prop name="py" tips="y坐标百分比" type="int" default="" />
+		<!-- <prop name="left" tips="居父容器左边的距离" type="number" default="" />
+		<prop name="right" tips="居父容器右边的距离" type="number" default="" />
+		<prop name="top" tips="居父容器上边的距离" type="number" default="" />
+		<prop name="bottom" tips="居父容器底边的距离" type="number" default="" /> -->
+		<prop name="centerX" tips="水平剧中偏移位置" type="number" default="" />
+		<prop name="centerY" tips="垂直剧中偏移位置" type="number" default="" />
 		<prop name="width" tips="宽度" type="int" default="" />
 		<prop name="height" tips="高度" type="int" default="" />
+		<prop name="pWidth" tips="宽度百分比" type="int" default="" />
+		<prop name="pHeight" tips="高度百分比" type="int" default="" />
 	</Base>
 	<Component className="morn.core.components.Component" drag="3">
 		<prop name="alpha" tips="透明度" type="number" default="" />		
@@ -26,12 +36,12 @@
 	</Component>
 	<Box className="morn.core.components.Box" inherit="Component" resName="box" icon="Box" drag="3" />
 	<Container className="morn.core.components.Container" inherit="Box" resName="container" icon="Canvas" drag="3">
-		<prop name="left" tips="居父容器左边的距离" type="number" default="" />
+		<!-- <prop name="left" tips="居父容器左边的距离" type="number" default="" />
 		<prop name="right" tips="居父容器右边的距离" type="number" default="" />
 		<prop name="top" tips="居父容器上边的距离" type="number" default="" />
 		<prop name="bottom" tips="居父容器底边的距离" type="number" default="" />
 		<prop name="centerX" tips="水平剧中偏移位置" type="number" default="" />
-		<prop name="centerY" tips="垂直剧中偏移位置" type="number" default="" />
+		<prop name="centerY" tips="垂直剧中偏移位置" type="number" default="" /> -->
 	</Container>
 	<View className="morn.core.components.View" inherit="Container" drag="3" />
 	<Dialog className="morn.core.components.Dialog" inherit="View" drag="3">
@@ -42,6 +52,12 @@
 		<prop name="sizeGrid" tips="9宫格(格式:左边距,上边距,右边距,下边距)" type="string" default="" />
 		<prop name="smoothing" tips="是否对位图进行平滑处理" type="bool" default="false" />
 	</Image>
+	<ImageWithBorder className="evans.components.ImageWithBorder" inherit="Image" skinLabel="urlBorder" icon="Image" resName="bImg" drag="3">
+		<prop name="url" tips="图片地址" type="string" default="" />
+		<prop name="urlBorder" tips="边框图片地址" type="string" default="" />
+		<prop name="sizeGridBorder" tips="边框9宫格(格式:左边距,上边距,右边距,下边距)" type="string" default="" />
+		<prop name="smoothing" tips="是否对位图进行平滑处理" type="bool" default="false" />
+	</ImageWithBorder>
 	<Clip className="morn.core.components.Clip" inherit="Component" skinLabel="url" resName="clip" icon="Tile" drag="3">
 		<prop name="url" tips="地址" type="string" default="" />
 		<prop name="clipX" tips="切片X轴数量" type="int" default="" />
