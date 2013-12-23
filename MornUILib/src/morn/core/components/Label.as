@@ -8,6 +8,9 @@ package morn.core.components {
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFormat;
+	
+	import mx.utils.StringUtil;
+	
 	import morn.core.utils.ObjectUtils;
 	import morn.core.utils.StringUtils;
 	
@@ -330,7 +333,14 @@ package morn.core.components {
 		}
 		
 		public function set sizeGrid(value:String):void {
-			_bitmap.sizeGrid = StringUtils.fillArray(Styles.defaultSizeGrid, value, int);
+			if(value == "true")
+			{
+				var w:int = _bitmap.width / 3;
+				var h:int = _bitmap.height / 3;
+				value = [w,h,w,h].join(",");
+			}else if(StringUtil.trim(value) == "" || value == "false")
+				return;
+			_bitmap.sizeGrid = StringUtils.fillArray(Styles.defaultSizeGrid, value,int);
 		}
 		
 		override public function commitMeasure():void {

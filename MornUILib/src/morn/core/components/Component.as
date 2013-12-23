@@ -8,6 +8,7 @@ package morn.core.components {
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	
 	import morn.core.events.UIEvent;
 	import morn.core.utils.ObjectUtils;
 	import morn.editor.core.IComponent;
@@ -25,6 +26,10 @@ package morn.core.components {
 	public class Component extends Sprite implements IComponent {
 		protected var _width:Number;
 		protected var _height:Number;
+		protected var _pWidth:Number;
+		protected var _pHeight:Number;
+		protected var _px:Number;
+		protected var _py:Number;
 		protected var _contentWidth:Number = 0;
 		protected var _contentHeight:Number = 0;
 		protected var _disabled:Boolean;
@@ -33,6 +38,13 @@ package morn.core.components {
 		protected var _dataSource:Object;
 		protected var _toolTip:Object;
 		protected var _mouseChildren:Boolean;
+		
+		protected var _top:Number;
+		protected var _bottom:Number;
+		protected var _left:Number;
+		protected var _right:Number;
+		protected var _centerX:Number;
+		protected var _centerY:Number;
 		
 		public function Component() {
 			mouseChildren = tabEnabled = tabChildren = false;
@@ -43,7 +55,7 @@ package morn.core.components {
 		
 		/**预初始化，在此可以修改属性默认值*/
 		protected function preinitialize():void {
-		
+			
 		}
 		
 		/**在此创建组件子对象*/
@@ -53,7 +65,8 @@ package morn.core.components {
 		
 		/**初始化，在此子对象已被创建，可以对子对象进行修改*/
 		protected function initialize():void {
-		
+			addEventListener(Event.ADDED_TO_STAGE,onAddedToStage);
+			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
 		}
 		
 		/**延迟调用，在组件被显示在屏幕之前调用*/
@@ -139,6 +152,7 @@ package morn.core.components {
 			}
 		}
 		
+		
 		/**高度(值为NaN时，高度为自适应大小)*/
 		override public function get height():Number {
 			if (!isNaN(_height)) {
@@ -186,7 +200,7 @@ package morn.core.components {
 		
 		/**执行影响宽高的延迟函数*/
 		public function commitMeasure():void {
-		
+			exeCallLater(resetPosition);
 		}
 		
 		protected function changeSize():void {
@@ -317,6 +331,182 @@ package morn.core.components {
 		
 		protected function onRollMouse(e:MouseEvent):void {
 			dispatchEvent(new UIEvent(e.type == MouseEvent.ROLL_OVER ? UIEvent.SHOW_TIP : UIEvent.HIDE_TIP, _toolTip, true));
+		}
+		
+		/**
+		 *宽度百分比 
+		 * @param value
+		 * 
+		 */
+		public function set pWidth(value:Number):void
+		{
+			if (_pWidth != value) 
+			{
+				_pWidth = value;
+				callLater(changeSize);
+			}
+		}
+		
+		/**
+		 *高度百分比 
+		 * @param value
+		 * 
+		 */
+		public function set pHeight(value:Number):void
+		{
+			if (_pHeight != value) 
+			{
+				_pHeight = value;
+				callLater(changeSize);
+			}
+		}
+		
+		public function set px(value:Number):void
+		{
+			_px = value;
+		}
+		
+		public function set py(value:Number):void
+		{
+			_py = value;
+		}
+		
+		protected function onAddedToStage(e:Event):void
+		{
+			if(parent == null)
+				return;
+			
+			//处理百分比宽度
+			var w:int,h:int;
+			
+			if(parent.parent && parent.parent == App.stage)
+			{
+				w = App.stage.stageWidth;
+				h = App.stage.stageHeight;
+			}
+			else
+			{
+				w = parent.width;
+				h = parent.height;
+			}
+			
+			if(_pWidth > 0)
+				width = int(w * _pWidth / 100);
+			
+			if(_pHeight > 0)
+				height = int(h * _pHeight / 100);
+			
+			//处理百分比位置
+			if(_px >= 0)
+				x = int(w * _px / 100);
+			
+			if(_py >= 0)
+				y = int(h * _py / 100);
+			
+			if (e.target == this) {
+				parent.addEventListener(Event.RESIZE, onResize);
+				callLater(resetPosition);
+			}
+		}
+		
+		/**居父容器顶上的距离*/
+		public function get top():Number {
+			return _top;
+		}
+		
+		public function set top(value:Number):void {
+			_top = value;
+			callLater(resetPosition);
+		}
+		
+		/**居父容器底部的距离*/
+		public function get bottom():Number {
+			return _bottom;
+		}
+		
+		public function set bottom(value:Number):void {
+			_bottom = value;
+			callLater(resetPosition);
+		}
+		
+		/**居父容器左边的距离*/
+		public function get left():Number {
+			return _left;
+		}
+		
+		public function set left(value:Number):void {
+			_left = value;
+			callLater(resetPosition);
+		}
+		
+		/**居父容器右边的距离*/
+		public function get right():Number {
+			return _right;
+		}
+		
+		public function set right(value:Number):void {
+			_right = value;
+			callLater(resetPosition);
+		}
+		
+		/**水平居中偏移位置*/
+		public function get centerX():Number {
+			return _centerX;
+		}
+		
+		public function set centerX(value:Number):void {
+			_centerX = value;
+			callLater(resetPosition);
+		}
+		
+		/**垂直居中偏移位置*/
+		public function get centerY():Number {
+			return _centerY;
+		}
+		
+		public function set centerY(value:Number):void {
+			_centerY = value;
+			callLater(resetPosition);
+		}
+		
+//		public function commitMeasure():void {
+//			exeCallLater(resetPosition);
+//		}
+		
+		protected function resetPosition():void {
+			if (parent) {
+				if (!isNaN(_centerX)) {
+					x = (parent.width - displayWidth) * 0.5 + _centerX;
+				} else if (!isNaN(_left)) {
+					x = _left;
+					if (!isNaN(_right)) {
+						width = parent.width - _left - _right;
+					}
+				} else if (!isNaN(_right)) {
+					x = parent.width - displayWidth - _right;
+				}
+				if (!isNaN(_centerY)) {
+					y = (parent.height - displayHeight) * 0.5 + _centerY;
+				} else if (!isNaN(_top)) {
+					y = _top;
+					if (!isNaN(_bottom)) {
+						height = parent.height - _top - _bottom;
+					}
+				} else if (!isNaN(_bottom)) {
+					y = parent.height - displayHeight - _bottom;
+				}
+			}
+		}
+		
+		protected function onResize(e:Event):void {
+			callLater(resetPosition);
+		}
+		
+		protected function onRemovedFromStage(e:Event):void 
+		{
+			if (e.target == this) {
+				parent.removeEventListener(Event.RESIZE, onResize);
+			}
 		}
 	}
 }

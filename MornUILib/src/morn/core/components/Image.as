@@ -4,6 +4,9 @@
  */
 package morn.core.components {
 	import flash.display.BitmapData;
+	
+	import mx.utils.StringUtil;
+	
 	import morn.core.events.UIEvent;
 	import morn.core.handlers.Handler;
 	import morn.core.utils.StringUtils;
@@ -74,6 +77,12 @@ package morn.core.components {
 			_bitmap.height = height;
 		}
 		
+		override public function set pWidth(value:Number):void
+		{
+			super.pWidth = value;
+			
+		}
+		
 		/**九宫格信息(格式:左边距,上边距,右边距,下边距)*/
 		public function get sizeGrid():String {
 			if (_bitmap.sizeGrid) {
@@ -83,6 +92,13 @@ package morn.core.components {
 		}
 		
 		public function set sizeGrid(value:String):void {
+			if(value == "true")
+			{
+				var w:int = _bitmap.width / 3;
+				var h:int = _bitmap.height / 3;
+				value = [w,h,w,h].join(",");
+			}else if(StringUtil.trim(value) == "" || value == "false")
+				return;
 			_bitmap.sizeGrid = StringUtils.fillArray(Styles.defaultSizeGrid, value);
 		}
 		

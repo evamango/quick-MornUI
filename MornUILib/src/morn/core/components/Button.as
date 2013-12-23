@@ -5,6 +5,9 @@
 package morn.core.components {
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	
+	import mx.utils.StringUtil;
+	
 	import morn.core.handlers.Handler;
 	import morn.core.utils.ObjectUtils;
 	import morn.core.utils.StringUtils;
@@ -37,6 +40,7 @@ package morn.core.components {
 		}
 		
 		override protected function initialize():void {
+			super.initialize();
 			_btnLabel.align = "center";
 			addEventListener(MouseEvent.ROLL_OVER, onMouse);
 			addEventListener(MouseEvent.ROLL_OUT, onMouse);
@@ -236,6 +240,13 @@ package morn.core.components {
 		}
 		
 		public function set sizeGrid(value:String):void {
+			if(value == "true")
+			{
+				var w:int = _bitmap.width / 3;
+				var h:int = _bitmap.height / 3;
+				value = [w,h,w,h].join(",");
+			}else if(StringUtil.trim(value) == "" || value == "false")
+				return;
 			_bitmap.sizeGrid = StringUtils.fillArray(Styles.defaultSizeGrid, value);
 		}
 		

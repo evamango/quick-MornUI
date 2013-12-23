@@ -50,13 +50,13 @@ package morn.core.components {
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
 		}
 		
-		protected function onAddedToStage(e:Event):void {
+		override protected function onAddedToStage(e:Event):void {
 			if (_autoPlay) {
 				play();
 			}
 		}
 		
-		protected function onRemovedFromStage(e:Event):void {
+		override protected function onRemovedFromStage(e:Event):void {
 			if (_autoStopAtRemoved) {
 				stop();
 			}
