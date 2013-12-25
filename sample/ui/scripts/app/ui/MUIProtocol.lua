@@ -27,11 +27,8 @@ function MUIProtocol:updateProps(props,parent)
 	--size
 	local width,height = MUtil.computeSize(self,props,parent)
 
-	if iskindof(self, "UIButton") then
-		self:setButtonSize(width, height)
-	else
-		self:setLayoutSize(width, height)
-	end
+	self:setLayoutSize(width, height)
+	
 
 	--position
 	local x,y = MUtil.computePos(self,props,parent)
@@ -62,14 +59,18 @@ function MUIProtocol:setUIName(name)
 end
 
 --设置数据,将针对getDefaultDataBind得到的默认属性对应赋值
-function MUIProtocol:setData(tableData)
+function MUIProtocol:setData(...)
+	local args = ...
+	if type(args) ~= "table" then
+		args = {args}
+	end
 	if iskindof(self, "MUIProtocol") then
 		self = self:getTarget()
 	end
 	-- body
 	if iskindof(self, "UIGroup") and self.isContainer_ then
 		--如果是容器
-		for k,v in pairs(tableData) do
+		for k,v in pairs(args) do
 			local child = self:getChildByName(k)
 			if child then
 				child:setData(v)
@@ -80,7 +81,7 @@ function MUIProtocol:setData(tableData)
 	else
 		--如果不是
 		for i,v in ipairs({self:getDefaultDataBind()}) do
-			v(self,tableData[i])
+			v(self,args[i])
 		end
 	end
 	

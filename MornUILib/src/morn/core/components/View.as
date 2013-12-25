@@ -8,10 +8,11 @@ package morn.core.components {
 	import morn.editor.core.IList;
 	
 	/**视图*/
-	public class View extends Container {
+	public class View extends Box {
 		/**加载模式使用，存储uixml*/
 		public static var xmlMap:Object = {};
-		protected static var uiClassMap:Object = {"Box": Box, "Button": Button, "CheckBox": CheckBox, "Clip": Clip, "ComboBox": ComboBox, "Component": Component, "Container": Container, "FrameClip": FrameClip, "HScrollBar": HScrollBar, "HSlider": HSlider, "Image": Image, "Label": Label, "LinkButton": LinkButton, "List": List, "Panel": Panel, "ProgressBar": ProgressBar, "RadioButton": RadioButton, "RadioGroup": RadioGroup, "ScrollBar": ScrollBar, "Slider": Slider, "Tab": Tab, "TextArea": TextArea, "TextInput": TextInput, "View": View, "ViewStack": ViewStack, "VScrollBar": VScrollBar, "VSlider": VSlider, "HBox": HBox, "VBox": VBox,"ImageWithBorder":ImageWithBorder};
+//		protected static var uiClassMap:Object = {"Box": Box, "Button": Button, "CheckBox": CheckBox, "Clip": Clip, "ComboBox": ComboBox, "Component": Component, "Container": Container, "FrameClip": FrameClip, "HScrollBar": HScrollBar, "HSlider": HSlider, "Image": Image, "Label": Label, "LinkButton": LinkButton, "List": List, "Panel": Panel, "ProgressBar": ProgressBar, "RadioButton": RadioButton, "RadioGroup": RadioGroup, "ScrollBar": ScrollBar, "Slider": Slider, "Tab": Tab, "TextArea": TextArea, "TextInput": TextInput, "View": View, "ViewStack": ViewStack, "VScrollBar": VScrollBar, "VSlider": VSlider, "HBox": HBox, "VBox": VBox,"ImageWithBorder":ImageWithBorder};
+		protected static var uiClassMap:Object = {"Box": Box, "Button": Button ,"Component": Component, "Image": Image, "Label": Label, "ProgressBar": ProgressBar, "RadioGroup": RadioGroup, "TextInput": TextInput, "View": View,"ImageWithBorder":ImageWithBorder};
 		protected static var viewClassMap:Object = {};
 		
 		protected function createView(xml:XML):void {

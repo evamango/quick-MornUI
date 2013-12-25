@@ -51,4 +51,14 @@ function MImage:setLayoutSize(width, height)
     return self
 end
 
+function MImage:getDefaultDataBind()
+    return self.setImage
+end
+
+--以后可更换为setDisplayFrame
+function MImage:setImage(url)
+    echoInfo("MImage's setImage function has not implemented!")
+    return self
+end
+
 return MImage

@@ -4,9 +4,21 @@ local MainScene = class("MainScene", function()
 end)
 
 function MainScene:ctor()
-    ui.newTTFLabel({text = "Hello, World", size = 64, align = ui.TEXT_ALIGN_CENTER})
-        :pos(display.cx, display.cy)
-        :addTo(self)
+    -- ui.newTTFLabel({text = "Hello, World", size = 64, align = ui.TEXT_ALIGN_CENTER})
+    --     :pos(display.cx, display.cy)
+    --     :addTo(self)
+    self.main = MUtil.getUIByName("Main"):addTo(self)
+
+    self.main.btnOpen1:onButtonClicked(function()
+        print("show Panel!")
+        UIManager.showPanel("PanelSample")
+    end)
+
+    self.main.btnOpen2:onButtonClicked(function()
+        app:enterScene("UITestScene")
+    end)
+
+
 end
 
 function MainScene:onEnter()

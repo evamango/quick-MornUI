@@ -3,8 +3,18 @@
 -- Date: 2013-12-18 21:54:40
 --
 local MEditBox = class("MEditBox", function (props,parent)
-
 	local box = CCEditBox:create(CCSize(MUtil.computeSize(nil,props,parent)), display.newScale9Sprite(MUtil.parseUrl(props.skin)))
+	--fontColor
+	box:setFontColor(DisplayUtil.convertToCCC3(props.color))
+	--fontSize
+	box:setFontSize(props.size and toint(props.size) or FONT_SIZE_M)
+	--fontName
+	box:setFontName(FONT_FAMILY)
+	-- box:set
+	if tobool(props.asPassword) then
+		box:setInputFlag(kEditBoxInputFlagPassword)
+	end
+
 	CCNodeExtend.extend(box)
 	return box
 end)
@@ -18,20 +28,6 @@ function MEditBox:ctor( props,parent )
 	self:updateProps(props,parent)
 end
 
-function MEditBox:updateProps(props,parent)
-	--fontColor
-	self:setFontColor(DisplayUtil.convertToCCC3(props.color))
-	--fontSize
-	self:setFontSize(props.size and toint(props.size) or FONT_SIZE_M)
-	--fontName
-	self:setFontName(FONT_FAMILY)
-	-- box:set
-	if tobool(props.asPassword) then
-		self:setInputFlag(kEditBoxInputFlagPassword)
-	end
-
-	return self:getComponent(".MUIProtocol").updateProps(self,props,parent)
-end
 
 
 function MEditBox:getDefaultDataBind()

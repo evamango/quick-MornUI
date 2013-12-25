@@ -1,7 +1,7 @@
 --
 -- Author: Evans
 -- Date: 2013-12-14 11:52:19
---
+--容器
 local MImage = import(".MImage")
 local MGroup = class("MGroup", cc.ui.UIGroup)
 
@@ -14,6 +14,14 @@ function MGroup:ctor(props,parent)
 	MUtil.extend(self)
 	self:updateProps(props,parent)
 	self:setNodeEventEnabled(true)
+
+	--处理点击事件
+	self:setTouchEnabled(true)
+	self:addTouchEventListener(function(evt,x,y)
+		if evt == "began" then
+			return true
+		end
+	end)
 end
 
 function MGroup:updateProps(props,parent)

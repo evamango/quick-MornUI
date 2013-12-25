@@ -4,4 +4,5 @@
   <item name="png.share.btn_red" compress="0" quality="80" props="sizeGrid=true&#xA;labelColors=0xffffff&#xA;labelStroke=true&#xA;labelSize=24"/>
   <item name="png.share.textinput" compress="0" quality="80" props="sizeGrid=true&#xA;height=60&#xA;size=24&#xA;color=0x0"/>
   <item name="png.share.label" compress="0" quality="80" props="color=0x0&#xA;size=24"/>
+  <item name="png.share.bImg" compress="0" quality="80" props="sizeGridBorder=true"/>
 </res>

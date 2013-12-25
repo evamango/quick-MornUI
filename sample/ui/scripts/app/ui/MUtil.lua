@@ -8,7 +8,7 @@ regObjInGlobal("MUtil",MUtil)
 
 --UI类
 MUtil.UI_TAGS = {
-    Container = ".MGroup",
+    Box = ".MGroup",
     Button = ".MButton",
     Image = ".MImage",
     Label = ".MLabel",
@@ -63,7 +63,7 @@ function MUtil.handlleUITable(table)
     local cTagName = table[0]
 
     --处理背景
-    if table[1][0] == "Image" then
+    if table[1] and table[1][0] == "Image" and table[1].name == "bg" then
         t = table[1]
         table[1] = nil
     else
@@ -76,7 +76,7 @@ function MUtil.handlleUITable(table)
         if MUtil.UI_TAGS[tagName] then
             assert(t,"t不能为空")
             --处理子对象
-            if MUtil.UI_TAGS[tagName] == MUtil.UI_TAGS.Container then
+            if MUtil.UI_TAGS[tagName] == MUtil.UI_TAGS.Box then
                 --处理子容器
                 -- dump(v)
                 t[#t + 1] = MUtil.handlleUITable(v)
@@ -117,7 +117,6 @@ function MUtil.parseFromTable( tagName,table,parent )
             end
         end
     end
-
 	local ui = tagName and cc.Registry.newObject(MUtil.UI_TAGS[tagName],props,parent)
     assert(ui,"缺少ui组件")
 
@@ -156,20 +155,26 @@ function MUtil.extend( obj )
 end
 
 --计算尺寸
---百分比尺寸(pWidth,pHeight) > 绝对尺寸(width,height)
+--相对父容器2边距离(left,right,top,bottom) > 百分比尺寸(pWidth,pHeight) > 绝对尺寸(width,height)
 function MUtil:computeSize(props,parent)
     
     local width
     local height
     local parentWidth,parentHeight = MUtil.computeParentSize(parent)
 
-    if props.pWidth then
+    --width--
+    if props.left and props.right then
+        width = parentWidth - toint(props.left) - toint(props.right)
+    elseif props.pWidth then
         width = parentWidth * toint(props.pWidth) / 100
     else
         width = toint(MUtil.checkProps_(self,props.width,"width"))
     end
 
-    if props.pHeight then
+    --height--
+    if props.top and props.bottom then
+        height = parentHeight - toint(props.top) - toint(props.bottom)
+    elseif props.pHeight then
         height = parentHeight * toint(props.pHeight) / 100
     else
         height = toint(MUtil.checkProps_(self,props.height,"height"))
@@ -179,24 +184,34 @@ function MUtil:computeSize(props,parent)
 end
 
 --计算位置
--- 相对中心坐标centerX,centerY > 百分比坐标(px,py) > 绝对坐标(x,y)
+-- 相对中心坐标centerX,centerY > 相对父容器坐标(left,right,top,bottom) > 百分比坐标(px,py) > 绝对坐标(x,y)
 function MUtil:computePos(props,parent)
     
     local x
     local y
     local parentWidth,parentHeight = MUtil.computeParentSize(parent)
 
+    --X--
     if props.centerX then
         x = (parentWidth - self:getLayoutSize()) / 2 + toint(props.centerX)
+    elseif props.left then
+        x = toint(props.left)
+    elseif props.right then
+        x = parentWidth - toint(props.right) - self:getLayoutSize()
     elseif props.px then
         x = parentWidth * toint(props.px) / 100
     else
         x = toint(MUtil.checkProps_(self,props.x,"x"))
     end
 
+    --Y--
+    local _,hSelf = self:getLayoutSize()
     if props.centerY then
-        local _,hSelf = self:getLayoutSize()
-        y = (parentHeight - hSelf) / 2 - toint(props.centerY)
+        y = (parentHeight - hSelf) / 2 + toint(props.centerY)
+    elseif props.top then
+        y = toint(props.top)
+    elseif props.bottom then
+        y = parentHeight - toint(props.bottom) - hSelf
     elseif props.py then
         y = parentHeight * toint(props.py) / 100
     else
@@ -237,6 +252,9 @@ end
 function MUtil:checkProps_(value,propName)
     if value == nil then
         -- echoInfo("warning!! %s(%s) has not set <%s> value and will set it to defautlt value!", self.__cname,self:getUIName(),propName)
+        -- if propName == "width" or propName == "heigh" then
+        --     return 10
+        -- end
         return 0
     end
     return value

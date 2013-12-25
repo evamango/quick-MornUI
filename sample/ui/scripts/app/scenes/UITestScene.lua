@@ -2,9 +2,7 @@
 -- Author: Evans
 -- Date: 2013-12-18 18:58:17
 --
-
-import("..utils.DisplayUtil")
-import("..ui.MUtil")
+-- PanelSample = import("..view.PanelSample")
 
 local UITestScene = class("UITestScene", function()
     return display.newScene("UITestScene")
@@ -12,30 +10,34 @@ end)
 
 function UITestScene:ctor()
 
-    ----一行代码就将UI解释出来
-    local ui = MUtil.getUIByName(UI_SAMPLE)
-    self:addChild(ui)
+    self.main = MUtil.getUIByName("Main"):addTo(self)
+    self.main.btnOpen1:onButtonClicked(function()
+        print("show Panel!")
+        UIManager.showPanel("PanelSample")
+    end)
+
+    self.main.btnOpen2:onButtonClicked(function()
+        app:enterScene("MainScene")
+    end)
+
+    
+
+    
+    
 
     -----方便地设置组件属性并更新--------
-    ui.boxBtn:setData({
-        btn1 = {"非常"},
-        btn2 = {"方便"},
-        btn3 = {"地"},
-        btn4 = {"设置"},
-        btn5 = {"属性"}
-        })
-
-    ui.itxtNormal:setData({"HI!我是Evans"})
-    ui.itxtPassword:setData({"我是星星"})
-
-    ui.lbl1:setData({"标签111"})
-    ui:setData({
-        lbl2 = {"标签222"}
-        })
-
-    -- ui:setData({
-    --     bImg1 = {"sister.png"}
+    -- ui.boxBtn:setData({
+    --     btn1 = "非常方便",
+    --     btn2 = "地",
+    --     btn3 = "设置属性",
     --     })
+
+
+end
+
+function UITestScene:showPanel1()
+    print(self.__cname)
+    self.ui:addTo(self)
 end
 
 function UITestScene:onEnter()

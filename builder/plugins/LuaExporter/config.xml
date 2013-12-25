@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+	<!-- 插件描述，必须完整 -->
+	<plugin>
+		<!-- 插件名称，会显示在插件菜单内 -->
+		<name>输出LUA(Ctrl+L)</name>
+		<!-- 插件资源名称 -->
+		<file>MBuilderPlugin_ExportLua.swf</file>
+		<!-- 插件包名，调用的入口，执行时调用下面类的start方法 -->
+		<start>MBuilderPlugin_ExportLua</start>
+		<!-- 快捷键(Keyboard对应的数字)，不能与编辑器快捷键冲突 -->
+		<shortcut ctrl="true" shift="false">76</shortcut>
+		<!-- 插件说明及作者信息 -->
+		<intro>作者：evamango831@gmail.com，本插件可以将UI XML输出为LUA</intro>
+	</plugin>
+	<!-- 插件自身配置，可根据自己需求配置 -->
+	<setting>
+		<urlExporter></urlExporter>
+		<urlOutput></urlOutput>
+	</setting>
+</root>

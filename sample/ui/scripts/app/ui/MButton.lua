@@ -19,8 +19,7 @@ function MButton:ctor(props,parent)
 	    pressed = url .. "_press." .. suffix,
 	    disabled = url .. "_disabled." .. suffix,
 	}
-	MButton.super.ctor(self,images, {scale9 = tobool(props.sizeGrid)})
-
+	MButton.super.ctor(self,images, {scale9 = tobool(props.sizeGrid),touchInSprite = true})
 
 	MUtil.extend(self)
 	self.sizeInit_ = self.sprite_ and self.sprite_:getContentSize() or {width = 10,height = 10}
@@ -94,6 +93,15 @@ function MButton:createTTFLabel( t,s,c,isStroke )
 	end
 
 	return label
+end
+
+function MButton:getLayoutSize()
+	local size = self.sprite_:getContentSize()
+	return size.width,size.height
+end
+
+function MButton:setLayoutSize(width,height)
+	MButton.super.setButtonSize(self,width,height)
 end
 
 

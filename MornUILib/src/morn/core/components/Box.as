@@ -13,6 +13,7 @@ package morn.core.components {
 			mouseChildren = true;
 		}
 		
+		
 		/**添加显示对象*/
 		public function addElement(element:DisplayObject, x:Number, y:Number):void {
 			element.x = x;
@@ -75,5 +76,8 @@ package morn.core.components {
 				}
 			}
 		}
+		
+		
+		
 	}
 }
