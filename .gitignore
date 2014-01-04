@@ -218,8 +218,8 @@ pip-log.txt
 .svn
 
 #flash builder
-.actionScriptProperties
-.flexLibProperties
+*.actionScriptProperties
+*.flexLibProperties
 
 
 #proj
