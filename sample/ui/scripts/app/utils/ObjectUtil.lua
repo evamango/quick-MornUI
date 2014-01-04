@@ -4,7 +4,6 @@
 --
 local ObjectUtil = {}
 
-------------------------------------
 
 --在全局中添加一个变量
 function regObjInGlobal(name,obj)
@@ -96,6 +95,20 @@ function checkObjType(obj,checkType,atLevel)
     end
 
 end
+
+--将对象设为单例对象
+--使用方法:放在类的ctor方法里
+function ObjectUtil.setToSingleton(target)
+    assert(target.__cname,"The class object is specified param in this method!")
+    if _G[target.__cname] then
+        error(string.format("The instance of this class(%s) already exists!Do not new again", target.__cname),2)
+    else
+        _G[target.__cname] = target
+        _G[target.__cname].instance = target
+    end
+    return target
+end
+
 
 regObjInGlobal("ObjectUtil",ObjectUtil) 
 

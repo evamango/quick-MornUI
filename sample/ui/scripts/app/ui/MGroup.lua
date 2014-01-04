@@ -30,7 +30,18 @@ function MGroup:updateProps(props,parent)
 	--bg
 	if props.url then
 		self:setBackgroundImage({url = props.url,sizeGrid = props.sizeGrid},self)
+
+		--如果props没设置宽高,则设为背景图的宽高
+		if not props.width or not props.pWidth or not (props.left and props.right) then
+			props.width = self.backgroundSprite_:getContentSize().width
+		end
+
+		if not props.height or not props.pHeight or not (props.top and props.bottom) then
+			props.height = self.backgroundSprite_:getContentSize().height
+		end
+
 	end
+
 	return self:getComponent("MUIProtocol"):updateProps(props,parent)
 end
 
@@ -52,16 +63,16 @@ function MGroup:addWidget(widget)
 			local childName = widget:getUIName()
 			assert(not self.childrenByName_[childName],string.format("already exist child named %s", childName))
 			self.childrenByName_[childName],self[childName] = widget,widget
-			echoInfo("addWidget %s<%s> to %s<%s>", widget.__cname,childName,self.__cname,self:getUIName())
+			-- echoInfo("addWidget %s<%s> to %s<%s>", widget.__cname,childName,self.__cname,self:getUIName())
 		end
 	end
 
 	return self
 end
 
-function MGroup:onExit()
-	print("onExit",self:getUIName(),self:retainCount())
-end
+-- function MGroup:onExit()
+	-- print("onExit",self:getUIName(),self:retainCount())
+-- end
 
 ---------------custom------------------
 
@@ -83,20 +94,30 @@ end
 
 --设置是否是面板根节点
 function MGroup:setIsRoot(parent)
+	--是否是面板根节点
 	self.isRoot_ = not tobool(parent)
-	if self.isRoot_ then
-		self.isOftenShow_ = false
 
+	if self.isRoot_ then
+		--是否经常显示
+		self:isOftenShow(true)
+		--是否是模态面板
+		self.isModal_ = true
 		--给它一个关闭面板方法
 		self.close = function(cleanup)
 			local parent = self:getParent()
 			if parent then
+				parent = parent:getParent()
 				if parent:getComponent("UISceneProtocol") then
-					parent:closePanel(self.__cname,cleanup)
+					parent:closePanel(self,cleanup)
 				else
 					self:removeSelf(cleanup)
 				end
 			end
+			return self
+		end
+
+		--给它一个更新内容方法
+		self.updateContent = function( ... )
 			return self
 		end
 	end

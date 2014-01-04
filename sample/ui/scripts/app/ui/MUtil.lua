@@ -8,66 +8,85 @@ regObjInGlobal("MUtil",MUtil)
 
 --UI类
 MUtil.UI_TAGS = {
-    Box = ".MGroup",
-    Button = ".MButton",
-    Image = ".MImage",
-    Label = ".MLabel",
-    TextInput = ".MEditBox",
-    ImageWithBorder = ".MImageBorder",
+    Box = "MGroup",
+    Button = "MButton",
+    Image = "MImage",
+    Label = "MLabel",
+    TextInput = "MEditBox",
+    ImageWithBorder = "MImageBorder",
+    -- CombineButton = {
+    --     label = "MButton",
+    -- },
 }
 
+--容器
+MUtil.CONTAINER = {
+    Box = true,
+    -- CombineButton = true,
+}
 
 
 
 --组件
 MUtil.COMPONENTS = {
-    {name = "MUIProtocol",url = ".components.MUIProtocol"},
-    {name = "UISceneProtocol",url = ".components.UISceneProtocol"},
+    MUIProtocol = ".components.MUIProtocol",
+    UISceneProtocol = ".components.UISceneProtocol",
 }
+
+local function importClass( table )
+    for _,v in pairs(table) do
+        if type(v) == "string" then
+            local cls = import("app.ui.".. v)
+            cc.Registry.add(cls, v)
+
+        else
+            importClass(v)
+        end
+        
+    end
+end
 
 
 --注册类
-for _,v in pairs(MUtil.UI_TAGS) do
-    local cls = import(v)
-    cc.Registry.add(cls, v)
-end
+importClass(MUtil.UI_TAGS)
+
+
 
 
 --注册组件
-for _,v in ipairs(MUtil.COMPONENTS) do
-    local cls = import(v.url)
-    cc.Registry.add(cls, v.name)
+for k,v in pairs(MUtil.COMPONENTS) do
+    local cls = import(v)
+    cc.Registry.add(cls, k)
 end
+
 
 
 
 --根据面板名称得到UI
 function MUtil.getUIByName(name)
-    if RELEASE then
+    if IS_RELEASE then
         --发布版的加载方式
-        require(UI_ALL)
+        require(UI_TABLE_URL .. UI_ALL)
     else
         --开发版的加载方式
-        local uiTable = require(name)
+        require(UI_TABLE_URL .. name)
     end
     local table = _G["ui_" .. name .. "_table"]
 
     local t,tagName = MUtil.handlleUITable(table)
-
-
+    dump(t)
     return MUtil.parseFromTable(tagName,t)
 end
 
 function MUtil.handlleUITable(table)
-    local t
+    local t = {}
     local cTagName = table[0]
 
-    --处理背景
-    if table[1] and table[1][0] == "Image" and table[1].name == "bg" then
-        t = clone(table[1])
-    else
-        t = {}
-    end
+    --设置默认值,防止MornUI里没生成
+    -- if cTagName == "CombineButton" and not table.type then
+    --     table.type = "label"
+    -- end
+
 
     for k,v in pairs(table) do
         local tagName = v[0]
@@ -75,14 +94,15 @@ function MUtil.handlleUITable(table)
         if MUtil.UI_TAGS[tagName] then
             assert(t,"t不能为空")
             --处理子对象
-            if MUtil.UI_TAGS[tagName] == MUtil.UI_TAGS.Box then
-                --处理子容器
+            if MUtil.CONTAINER[tagName] then
+                --处理子容器对象
                 t[#t + 1] = MUtil.handlleUITable(v)
-
             else
                 --其他子对象
-                if k == "1" and tagName == "Image" and v.name == "bg" then
-                    --底图,不处理
+                if k == 1 and tagName == "Image" and v.name == "bg" then
+                    --底图
+                    t.url = v.url
+                    t.sizeGrid = v.sizeGrid
                 else
                     t[#t + 1] = v
                 end
@@ -107,7 +127,7 @@ function MUtil.parseFromTable( tagName,table,parent )
     local props
 
 
-    --设置属性与子对象
+    --update props & children
     for k,v in pairs(table) do
         if k ~= 0 then
             if type(k) == "number" and MUtil.UI_TAGS[v[0]] then
@@ -120,10 +140,14 @@ function MUtil.parseFromTable( tagName,table,parent )
             end
         end
     end
-	local ui = tagName and cc.Registry.newObject(MUtil.UI_TAGS[tagName],props,parent)
+    local className = props.type and MUtil.UI_TAGS[tagName][props.type] or MUtil.UI_TAGS[tagName]
+    if type(className) == "table" then
+        dump(props)
+    end
+	local ui = tagName and cc.Registry.newObject(className,props,parent)
     assert(ui,"缺少ui组件")
 
-    --update props
+    --add children
     if children then
         for _,v in ipairs(children) do
             local child = MUtil.parseFromTable(v.key,v.value,ui)
@@ -148,7 +172,7 @@ function MUtil.parseUrl(url)
     if MUtil.IMG_SUFFIX[list[#list]] then
         return url
     end
-    return list[#list] .. "." .. list[1]
+    return "#" .. list[#list] .. "." .. list[1]
 end
 
 function MUtil.parseBtnSkin( url )
@@ -264,6 +288,40 @@ function MUtil:checkProps_(value,propName)
         return 0
     end
     return value
+end
+
+--尽量不要使用!
+function MUtil.newTTFLabelWithOutline(params)
+    -- body
+    local label = ui.newTTFLabelWithOutline(params)
+
+    local children = label:getChildren()
+    if not children then
+        return
+    end
+    local len = children:count()
+    local child
+    for i=0,len - 1 do
+        child = tolua.cast(children:objectAtIndex(i), "CCNode")
+        if i == 0 then
+            --move right
+            child:align(display.LEFT_TOP,1,0)
+        elseif i == 1 then
+            --move left
+            child:align(display.LEFT_TOP,-1,0)
+        elseif i == 2 then
+            --move down
+            child:align(display.LEFT_TOP,0,-1)
+        elseif i == 3 then
+            --move up
+            child:align(display.LEFT_TOP,0,1)
+        else
+            child:align(display.LEFT_TOP,0,0)
+        end
+        
+    end
+
+    return label
 end
 
 

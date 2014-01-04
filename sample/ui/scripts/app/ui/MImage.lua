@@ -1,7 +1,7 @@
 --
 -- Author: Evans
 -- Date: 2013-12-16 10:45:36
---
+--图片
 
 local MImage = class("MImage", function(props)
 	local url = MUtil.parseUrl(props.url)
@@ -57,7 +57,8 @@ end
 
 --以后可更换为setDisplayFrame
 function MImage:setImage(url)
-    echoInfo("MImage's setImage function has not implemented!")
+    -- echoInfo("MImage's setImage function has not implemented!")
+    self:setDisplayFrame(display.newSpriteFrame(url))
     return self
 end
 

@@ -41,14 +41,26 @@ function MUIProtocol:updateProps(props,parent)
 	end
 	--size
 	local width,height = MUtil.computeSize(target,props,parent)
-
 	target:setLayoutSize(width, height)
-	
 
 	--position
 	local x,y = MUtil.computePos(target,props,parent)
 
 	DisplayUtil.posUI(target,x, y,parent)
+
+	--anchor
+	if props.anchorX or props.anchorY then
+		local anchorX = props.anchorX and string.upper(props.anchorX) or "LEFT"
+		local anchorY = props.anchorY and string.upper(props.anchorY) or "TOP"
+		local anchor = anchorX .. "_" .. anchorY
+		anchor = anchor == "CENTER_CENTER" and "CENTER" or anchor
+		display.align(target, display[anchor])
+	end
+
+	--visible
+	if props.visible then
+		target:setVisible(tobool(props.visible))
+	end
 
 	return self
 end

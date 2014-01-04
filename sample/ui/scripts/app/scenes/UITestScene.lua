@@ -9,7 +9,6 @@ local UITestScene = class("UITestScene", function()
 end)
 
 
-
 function UITestScene:ctor()
     --添加UI管理组件--
     cc.GameObject.extend(self)

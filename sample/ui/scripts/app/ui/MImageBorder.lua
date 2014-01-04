@@ -3,8 +3,8 @@
 -- Date: 2013-12-23 14:38:11
 --带边框图片
 
-MImage = cc.Registry.classes_[".MImage"]
-MGroup = cc.Registry.classes_[".MGroup"]
+MImage = cc.Registry.classes_["MImage"]
+MGroup = cc.Registry.classes_["MGroup"]
 MImageBorder = class("MImageBorder", MGroup)
 
 --------------override---------------

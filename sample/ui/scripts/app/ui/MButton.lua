@@ -10,15 +10,26 @@ MButton.COLOR_LABEL_DEFAULT = "0x000000"
 --默认LABEL是否描边:否
 MButton.STROKE_LABEL_DEFAULT = false
 
+local sharedSpriteFrameCache = CCSpriteFrameCache:sharedSpriteFrameCache()
+
 ---------------override---------------
 
 function MButton:ctor(props,parent)
 	local url,suffix = MUtil.parseBtnSkin(props.skin)
+	local urlPressed = url .. "_press." .. suffix
+	local urlDisabled = url .. "_disabled." .. suffix
 	local images = {
-		normal = url .. "." .. suffix,
-	    pressed = url .. "_press." .. suffix,
-	    disabled = url .. "_disabled." .. suffix,
+		normal = "#" .. url .. "." .. suffix,
 	}
+	if sharedSpriteFrameCache:spriteFrameByName(urlPressed) then
+		images.pressed = "#" .. urlPressed
+	end
+
+	if sharedSpriteFrameCache:spriteFrameByName(urlDisabled) then
+		images.disabled = "#" .. urlDisabled
+	end
+
+
 	MButton.super.ctor(self,images, {scale9 = tobool(props.sizeGrid),touchInSprite = true})
 
 	MUtil.extend(self)
@@ -37,25 +48,34 @@ function MButton:updateProps(props,parent)
 
 
 	-- label
-	local listColor = props.labelColors and string.split(props.labelColors, ",") or {MButton.COLOR_LABEL_DEFAULT}
-	local isStroke = props.labelStroke and tobool(props.labelStroke) or MButton.STROKE_LABEL_DEFAULT
+	if props.label and props.label ~= "" then
+		--标签文本
+		local listColor = props.labelColors and string.split(props.labelColors, ",") or {MButton.COLOR_LABEL_DEFAULT}
+		local isStroke = props.labelStroke and tobool(props.labelStroke) or MButton.STROKE_LABEL_DEFAULT
 
-	local lblNormal = self:createTTFLabel(props.label,props.labelSize,listColor[1],props.labelStroke)
-	self:setButtonLabel(UIPushButton.NORMAL, lblNormal)
+		local lbl = self:createTTFLabel(props.label,props.labelSize,listColor[1],props.labelStroke)
+		self:setButtonLabelElement(UIPushButton.NORMAL, lbl)
 
-	if listColor[2] then
-		self:setButtonLabel(UIPushButton.PRESSED, self:createTTFLabel(props.label,props.labelSize,listColor[2],props.labelStroke))
-		if listColor[3] then
-			self:setButtonLabel(UIPushButton.DISABLED, self:createTTFLabel(props.label,props.labelSize,listColor[3],props.labelStroke))
-		else
-			self:setButtonLabel(UIPushButton.DISABLED, lblNormal)
+		if listColor[2] then
+			self:setButtonLabelElement(UIPushButton.PRESSED, self:createTTFLabel(props.label,props.labelSize,listColor[2],props.labelStroke))
+			if listColor[3] then
+				self:setButtonLabelElement(UIPushButton.DISABLED, self:createTTFLabel(props.label,props.labelSize,listColor[3],props.labelStroke))
+			else
+				self:setButtonLabelElement(UIPushButton.DISABLED, lbl)
+			end
 		end
+	elseif props.labelSkin and props.labelSkin ~= "" then
+		--标签对象
+		local url,suffix = MUtil.parseBtnSkin(props.labelSkin)
+		self:setButtonLabelElement(display.newSprite("#" .. url .. "." .. suffix))
 	end
+
+	
 	return self
 end
 
 function MButton:getDefaultDataBind()
-	return self.setButtonLabelString
+	return self.setButtonLabelElement
 end
 
 
@@ -67,7 +87,27 @@ function MButton:setButtonLabelString(text)
 	return self
 end
 
+function  MButton:setButtonLabel(label)
+	MButton.super.setButtonLabel(self,UIPushButton.NORMAL,label)
+	-- MButton.super.setButtonLabel(self,UIPushButton.PRESSED,label)
+	-- MButton.super.setButtonLabel(self,UIPushButton.DISABLED,label)
+	return self
+end
+
+function MButton:addWidget(widget)
+
+end
+
 -----------------custom-----------------
+
+function MButton:setButtonLabelElement(v)
+	print(self:getUIName(),type(v))
+	if type(v) == "string" then
+		self:setButtonLabelString(v)
+	else
+		self:setButtonLabel(v)
+	end
+end
 
 function MButton:createTTFLabel( t,s,c,isStroke )
 	local label
@@ -101,7 +141,11 @@ function MButton:getLayoutSize()
 end
 
 function MButton:setLayoutSize(width,height)
-	MButton.super.setButtonSize(self,width,height)
+	if self.scale9_ then
+		MButton.super.setButtonSize(self,width,height)
+	end
+	
+	return self
 end
 
 
