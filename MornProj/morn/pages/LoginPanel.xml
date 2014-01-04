@@ -1,0 +1,11 @@
+<View sceneWidth="1024" sceneHeight="768" sceneColor="0xffffff" sceneBg="morn/views/LoginPanel.jpg" layers="1,1,0,0,第 1 层" name="bg">
+  <Box layers="2,1,1,0,第 2 层;1,1,1,0,第 1 层" layer="1" centerX="0" centerY="0">
+    <Image url="png.share.bg_panel_s" x="0" y="0" layer="1" name="bg"/>
+    <TextInput skin="png.share.textinput_1" x="159" y="135.5" layer="2" sizeGrid="true" height="63" color="0xf" size="24" width="350" name="itxtID"/>
+    <TextInput skin="png.share.textinput_1" x="159" y="235.5" layer="2" sizeGrid="true" height="63" color="0xf" size="24" width="350" name="itxtIP"/>
+    <Image url="png.font.font_login" y="56" layer="2" centerX="0"/>
+    <Image url="png.font.font_uid" x="60" y="150" layer="2"/>
+    <Image url="png.font.font_svr" x="60" y="250" layer="2"/>
+    <Button label="" skin="png.share.btn_s1_s" y="335" layer="2" sizeGrid="true" height="101" labelSkin="png.font.font_login_2" x="0" centerX="0" pWidth="50" name="btnLogin"/>
+  </Box>
+</View>

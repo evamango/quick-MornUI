@@ -7,7 +7,6 @@ require("framework.cc.init")
 import("app.utils.ObjectUtil")
 import("app.utils.DisplayUtil")
 import("app.ui.MUtil")
-import("app.ui.UIManager")
 
 local MyApp = class("MyApp", cc.mvc.AppBase)
 

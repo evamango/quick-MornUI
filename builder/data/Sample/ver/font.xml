@@ -1,0 +1,29 @@
+<lib>
+  <bitmapdata class="png.font.btn_ach" file="D:\quick-MornUI\MornProj\morn\assets\font\btn_ach.png" compression="false" quality="80" create="138845672092515203"/>
+  <bitmapdata class="png.font.btn_activity" file="D:\quick-MornUI\MornProj\morn\assets\font\btn_activity.png" compression="false" quality="80" create="138845689217621583"/>
+  <bitmapdata class="png.font.btn_fr" file="D:\quick-MornUI\MornProj\morn\assets\font\btn_fr.png" compression="false" quality="80" create="138845685635023549"/>
+  <bitmapdata class="png.font.btn_friend" file="D:\quick-MornUI\MornProj\morn\assets\font\btn_friend.png" compression="false" quality="80" create="138845676156215573"/>
+  <bitmapdata class="png.font.btn_mail" file="D:\quick-MornUI\MornProj\morn\assets\font\btn_mail.png" compression="false" quality="80" create="138845677978311545"/>
+  <bitmapdata class="png.font.btn_setting" file="D:\quick-MornUI\MornProj\morn\assets\font\btn_setting.png" compression="false" quality="80" create="138845679655614546"/>
+  <bitmapdata class="png.font.btn_treasure" file="D:\quick-MornUI\MornProj\morn\assets\font\btn_treasure.png" compression="false" quality="80" create="138845674287114495"/>
+  <bitmapdata class="png.font.font_bk" file="D:\quick-MornUI\MornProj\morn\assets\font\font_bk.png" compression="false" quality="80" create="13884559442714527"/>
+  <bitmapdata class="png.font.font_challenge" file="D:\quick-MornUI\MornProj\morn\assets\font\font_challenge.png" compression="false" quality="80" create="13884559977185740"/>
+  <bitmapdata class="png.font.font_create" file="D:\quick-MornUI\MornProj\morn\assets\font\font_create.png" compression="false" quality="80" create="13887423008053082"/>
+  <bitmapdata class="png.font.font_createRole" file="D:\quick-MornUI\MornProj\morn\assets\font\font_createRole.png" compression="false" quality="80" create="13887421432485661"/>
+  <bitmapdata class="png.font.font_cr_desc_shu" file="D:\quick-MornUI\MornProj\morn\assets\font\font_cr_desc_shu.png" compression="false" quality="80" create="13887431338596093"/>
+  <bitmapdata class="png.font.font_cr_desc_wei" file="D:\quick-MornUI\MornProj\morn\assets\font\font_cr_desc_wei.png" compression="false" quality="80" create="13887432008185971"/>
+  <bitmapdata class="png.font.font_cr_desc_wu" file="D:\quick-MornUI\MornProj\morn\assets\font\font_cr_desc_wu.png" compression="false" quality="80" create="13887432459525838"/>
+  <bitmapdata class="png.font.font_equip" file="D:\quick-MornUI\MornProj\morn\assets\font\font_equip.png" compression="false" quality="80" create="13884558814035144"/>
+  <bitmapdata class="png.font.font_goods" file="D:\quick-MornUI\MornProj\morn\assets\font\font_goods.png" compression="false" quality="80" create="13884560239564072"/>
+  <bitmapdata class="png.font.font_hero" file="D:\quick-MornUI\MornProj\morn\assets\font\font_hero.png" compression="false" quality="80" create="13884557922605462"/>
+  <bitmapdata class="png.font.font_login" file="D:\quick-MornUI\MornProj\morn\assets\font\font_login.png" compression="false" quality="80" create="13887186598513972"/>
+  <bitmapdata class="png.font.font_login_2" file="D:\quick-MornUI\MornProj\morn\assets\font\font_login_2.png" compression="false" quality="80" create="13887194737383239"/>
+  <bitmapdata class="png.font.font_name" file="D:\quick-MornUI\MornProj\morn\assets\font\font_name.png" compression="false" quality="80" create="13887421811542615"/>
+  <bitmapdata class="png.font.font_sg" file="D:\quick-MornUI\MornProj\morn\assets\font\font_sg.png" compression="false" quality="80" create="13884559667183284"/>
+  <bitmapdata class="png.font.font_svr" file="D:\quick-MornUI\MornProj\morn\assets\font\font_svr.png" compression="false" quality="80" create="13887200592573053"/>
+  <bitmapdata class="png.font.font_uid" file="D:\quick-MornUI\MornProj\morn\assets\font\font_uid.png" compression="false" quality="80" create="13887186990302904"/>
+  <bitmapdata class="png.font.font_vip1" file="D:\quick-MornUI\MornProj\morn\assets\font\font_vip1.png" compression="false" quality="80" create="13884564115843038"/>
+  <bitmapdata class="png.font.font_wei" file="D:\quick-MornUI\MornProj\morn\assets\font\font_wei.png" compression="false" quality="80" create="13887428655403357"/>
+  <bitmapdata class="png.font.font_wu" file="D:\quick-MornUI\MornProj\morn\assets\font\font_wu.png" compression="false" quality="80" create="13887428655403357"/>
+  <bitmapdata class="png.font.font_zy" file="D:\quick-MornUI\MornProj\morn\assets\font\font_zy.png" compression="false" quality="80" create="13887428655403357"/>
+</lib>

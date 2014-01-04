@@ -1,0 +1,21 @@
+<View sceneWidth="1024" sceneHeight="768" sceneColor="0xffffff" sceneBg="morn/views/CreateRolePanel.jpg" layers="1,1,0,0,第 1 层">
+  <Box layers="2,1,0,0,第 2 层;4,1,0,0,第 4 层;3,1,0,1,第 3 层;1,1,0,1,第 1 层" layer="1" centerX="0" centerY="-10" x="10" y="10">
+    <Image url="png.share.bg_panel_m" layer="1" name="bg"/>
+    <Image url="png.share.bg_s2" y="105" layer="3" sizeGrid="true" pWidth="92" centerX="0" x="35" height="250"/>
+    <Image url="png.share.img_magic_circle" x="338" y="124" layer="3"/>
+    <Image url="png.share.bg_s3" x="584" y="160" layer="4" sizeGrid="true" width="231" height="107"/>
+    <Image url="png.font.font_createRole" y="40" layer="2" centerX="0"/>
+    <RadioGroup layers="1,1,0" layer="2" x="46" y="108" name="rdgCountry">
+      <RadioButton label="" skin="png.share.radio_s1" layer="1" name="rdbWei"/>
+      <RadioButton label="" skin="png.share.radio_s1" y="76" layer="1" name="rdbShu"/>
+      <RadioButton label="" skin="png.share.radio_s1" y="152" layer="1" name="rdbWu"/>
+    </RadioGroup>
+    <Image url="jpg.share.imgLoader" x="454" y="232" layer="2" anchorX="center" anchorY="center" visible="false" name="imgHero"/>
+    <Image url="jpg.share.imgLoader" x="704" y="136" layer="2" anchorX="center" anchorY="center" visible="false" name="imgHeroName"/>
+    <Image visible="false" url="jpg.share.imgLoader" x="696" y="210" layer="2" anchorX="center" anchorY="center" name="imgDesc"/>
+    <Image url="png.font.font_name" x="68" y="402" layer="2"/>
+    <TextInput skin="png.share.textinput_1" x="150" y="386" layer="2" sizeGrid="true" height="63" color="0xf" size="24" width="359" name="itxtName"/>
+    <Button label="" skin="png.share.btn_dice" x="476" y="370" layer="2" name="btnDice"/>
+    <Button label="" skin="png.share.btn_s1_s" x="620" y="368" layer="2" sizeGrid="true" width="198" height="101" name="btnCreate" labelSkin="png.font.font_create"/>
+  </Box>
+</View>

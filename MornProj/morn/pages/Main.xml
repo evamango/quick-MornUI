@@ -1,6 +1,0 @@
-<View sceneWidth="1024" sceneHeight="768" sceneColor="0xffffff" sceneBg="" layers="1,1,0,0,第 1 层" pWidth="100" pHeight="100">
-  <Box layers="1,1,0" layer="1" left="10" bottom="10" pWidth="50" height="60">
-    <Button label="打开面板1" skin="png.share.btn_green" layer="1" sizeGrid="true" labelColors="0xffffff" labelStroke="true" labelSize="24" pWidth="45" name="btnOpen1"/>
-    <Button label="打开面板2" skin="png.share.btn_green" layer="1" sizeGrid="true" labelColors="0xffffff" labelStroke="true" labelSize="24" pWidth="45" right="0" name="btnOpen2"/>
-  </Box>
-</View>

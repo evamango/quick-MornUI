@@ -3,6 +3,7 @@
  * Feedback yungzhu@gmail.com http://weibo.com/newyung
  */
 package morn.core.components {
+	import flash.desktop.Icon;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
@@ -28,6 +29,7 @@ package morn.core.components {
 		protected var _selected:Boolean;
 		protected var _skin:String;
 		protected var _autoSize:Boolean = true;
+		protected var _imgLabel:Image
 		
 		public function Button(skin:String = null, label:String = "") {
 			this.skin = skin;
@@ -37,6 +39,7 @@ package morn.core.components {
 		override protected function createChildren():void {
 			addChild(_bitmap = new AutoBitmap());
 			addChild(_btnLabel = new Label());
+			addChild(_imgLabel = new Image());
 		}
 		
 		override protected function initialize():void {
@@ -79,6 +82,17 @@ package morn.core.components {
 				_btnLabel.text = value;
 				callLater(changeState);
 			}
+		}
+		
+		/**
+		 *按钮标签皮肤 
+		 * @param value
+		 * 
+		 */
+		public function set labelSkin(value:String):void
+		{
+			_imgLabel.url = value;
+			callLater(resetPosition);
 		}
 		
 		/**皮肤*/
@@ -273,6 +287,16 @@ package morn.core.components {
 			} else {
 				super.dataSource = value;
 			}
+		}
+		
+		
+		override protected function resetPosition():void
+		{
+			super.resetPosition();
+			//标签
+			//更新位置
+			_imgLabel.x = width - _imgLabel.width >> 1;
+			_imgLabel.y = height - _imgLabel.height >> 1;
 		}
 	}
 }

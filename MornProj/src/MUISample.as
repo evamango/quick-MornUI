@@ -4,7 +4,7 @@ package
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	
-	import game.ui.UISampleView;
+	import game.ui.LoginPanelView;
 	
 	import morn.core.handlers.Handler;
 	
@@ -22,7 +22,7 @@ package
 			App.init(this);
 			
 			//加载资源
-			App.loader.loadAssets(["assets/share.swf"],new Handler(onLoadComplete),new Handler(loadProgress));
+			App.loader.loadAssets(["assets/share.swf","assets/font.swf"],new Handler(onLoadComplete),new Handler(loadProgress));
 		}
 		
 		private function loadProgress(value:Number):void {
@@ -32,7 +32,7 @@ package
 		
 		private function onLoadComplete():void {
 			//实例化场景
-			addChild(new UISampleView());
+			addChild(new LoginPanelView());
 		}
 	}
 }

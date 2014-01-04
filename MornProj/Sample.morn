@@ -9,7 +9,7 @@
   <codeImports>import morn.core.components.*;</codeImports>
   <uiType>1</uiType>
   <uiExportPath>bin/ui.swf</uiExportPath>
-  <boxTypes>Box</boxTypes>
+  <boxTypes>Box,RadioGroup</boxTypes>
   <pageTypes>View</pageTypes>
   <shareResPath/>
 </project>

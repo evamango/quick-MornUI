@@ -46,6 +46,8 @@ package morn.core.components {
 		protected var _centerX:Number;
 		protected var _centerY:Number;
 		
+		
+		
 		public function Component() {
 			addEventListener(Event.ADDED_TO_STAGE,onAddedToStage);
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
@@ -509,5 +511,7 @@ package morn.core.components {
 				parent.removeEventListener(Event.RESIZE, onResize);
 			}
 		}
+		
+
 	}
 }

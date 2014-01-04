@@ -18,6 +18,9 @@ package morn.core.components {
 	public class Image extends Component {
 		protected var _bitmap:AutoBitmap;
 		protected var _url:String;
+		protected var _anchorX:String = "left";
+		
+		protected var _anchorY:String = "top";
 		
 		public function Image(url:String = null) {
 			this.url = url;
@@ -134,5 +137,51 @@ package morn.core.components {
 				App.loader.clearResLoaded(_url);
 			}
 		}
+		
+		public function set anchorX(v:String):void
+		{
+			if(v == _anchorX)
+				return;
+			_anchorX = v;
+			callLater(resetImgPosition);
+		}
+		
+		public function set anchorY(v:String):void
+		{
+			if(v == _anchorY)
+				return;
+			_anchorY = v;
+			callLater(resetImgPosition);
+		}
+		
+		protected function resetImgPosition():void
+		{
+			switch(_anchorX)
+			{
+				case "center":
+					_bitmap.x = -_bitmap.width >> 1;
+					break;
+				case "right":
+					_bitmap.x = -_bitmap.width;
+					break;
+				default:
+					_bitmap.x = 0;
+					break;
+			}
+			
+			switch(_anchorY)
+			{
+				case "center":
+					_bitmap.y = -_bitmap.height >> 1;
+					break;
+				case "right":
+					_bitmap.y = -_bitmap.height;
+					break;
+				default:
+					_bitmap.y = 0;
+					break;
+			}
+		}
+		
 	}
 }

@@ -51,6 +51,8 @@
 		<prop name="url" tips="地址" type="string" default="" />
 		<prop name="sizeGrid" tips="9宫格(格式:左边距,上边距,右边距,下边距)" type="string" default="" />
 		<prop name="smoothing" tips="是否对位图进行平滑处理" type="bool" default="false" />
+		<prop name="anchorX" tips="水平锚点" type="option" option="left,center,right" default="left" />
+		<prop name="anchorY" tips="垂直锚点" type="option" option="top,center,bottom" default="top" />
 	</Image>
 	<ImageWithBorder className="evans.components.ImageWithBorder" inherit="Image" skinLabel="urlBorder" icon="Image" resName="bImg" drag="3">
 		<prop name="url" tips="图片地址" type="string" default="" />
@@ -104,6 +106,7 @@
 		<prop name="skin" tips="皮肤" type="string" default="" />
 		<prop name="sizeGrid" tips="九宫格信息(格式:左边距,上边距,右边距,下边距)" type="string" default="" />
 		<prop name="label" tips="按钮标签" type="string" default="" />
+		<prop name="labelSkin" tips="按钮标签皮肤" type="string" default="" />
 		<prop name="labelFont" tips="字体" type="comboBox" option="Arial,SimSun,Microsoft YaHei" default="" />
 		<prop name="labelBold" tips="标签加粗" type="bool" default="false" />
 		<prop name="labelColors" tips="标签颜色(格式:upColor,overColor,downColor,disableColor)" type="string" default="" />
@@ -218,4 +221,7 @@
 		<prop name="space" tips="子对象的间隔" type="int" default="" />
 		<prop name="align" tips="布局元素的水平对齐" type="option" option="none,left,center,right" default="" />
 	</VBox>
+	<CombineButton className="evans.components.CombineButton" inherit="Box" defaultValue="type='label" drag="3">
+		<prop name="type" tips="类型" type="string" default="label" />
+	</CombineButton>
 </uiComp>

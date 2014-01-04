@@ -5,4 +5,11 @@
   <item name="png.share.textinput" compress="0" quality="80" props="sizeGrid=true&#xA;height=60&#xA;size=24&#xA;color=0x0"/>
   <item name="png.share.label" compress="0" quality="80" props="color=0x0&#xA;size=24"/>
   <item name="png.share.bImg" compress="0" quality="80" props="sizeGridBorder=true"/>
+  <item name="png.share.img_s1" compress="0" quality="80" props="sizeGrid=true"/>
+  <item name="png.share.textinput_1" compress="0" quality="80" props="sizeGrid=true&#xA;height=63&#xA;color=0xf&#xA;size=24&#xA;"/>
+  <item name="png.share.btn_s1_s" compress="0" quality="80" props="label=&#xA;sizeGrid=true&#xA;width=198&#xA;height=101"/>
+  <item name="png.share.bg_s2" compress="0" quality="80" props="sizeGrid=true"/>
+  <item name="png.share.bg_s3" compress="0" quality="80" props="sizeGrid=true"/>
+  <item name="png.share.btn_dice" compress="0" quality="80" props="label=&#xA;"/>
+  <item name="png.share.radio_s1" compress="0" quality="80" props="label=&#xA;"/>
 </res>

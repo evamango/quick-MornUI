@@ -21,7 +21,8 @@ MUtil.UI_TAGS = {
 
 --组件
 MUtil.COMPONENTS = {
-    ".MUIProtocol",
+    {name = "MUIProtocol",url = ".components.MUIProtocol"},
+    {name = "UISceneProtocol",url = ".components.UISceneProtocol"},
 }
 
 
@@ -34,8 +35,8 @@ end
 
 --注册组件
 for _,v in ipairs(MUtil.COMPONENTS) do
-    local cls = import(v)
-    cc.Registry.add(cls, v)
+    local cls = import(v.url)
+    cc.Registry.add(cls, v.name)
 end
 
 
@@ -47,10 +48,9 @@ function MUtil.getUIByName(name)
         require(UI_ALL)
     else
         --开发版的加载方式
-        require(name)
+        local uiTable = require(name)
     end
     local table = _G["ui_" .. name .. "_table"]
-
 
     local t,tagName = MUtil.handlleUITable(table)
 
@@ -64,8 +64,7 @@ function MUtil.handlleUITable(table)
 
     --处理背景
     if table[1] and table[1][0] == "Image" and table[1].name == "bg" then
-        t = table[1]
-        table[1] = nil
+        t = clone(table[1])
     else
         t = {}
     end
@@ -78,12 +77,16 @@ function MUtil.handlleUITable(table)
             --处理子对象
             if MUtil.UI_TAGS[tagName] == MUtil.UI_TAGS.Box then
                 --处理子容器
-                -- dump(v)
                 t[#t + 1] = MUtil.handlleUITable(v)
 
             else
                 --其他子对象
-                t[#t + 1] = v
+                if k == "1" and tagName == "Image" and v.name == "bg" then
+                    --底图,不处理
+                else
+                    t[#t + 1] = v
+                end
+                
             end
         else
             assert(t,"t不能为空")
@@ -128,6 +131,9 @@ function MUtil.parseFromTable( tagName,table,parent )
         end
     end
 
+
+    table = nil
+
 	return ui
 end
 
@@ -151,7 +157,7 @@ function MUtil.parseBtnSkin( url )
 end
 
 function MUtil.extend( obj )
-    obj:addComponent(".MUIProtocol"):exportMethods()
+    obj:addComponent("MUIProtocol"):exportMethods()
 end
 
 --计算尺寸

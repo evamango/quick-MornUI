@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <root>
-	<props>x,y,px,py,left,right,top,bottom,centerX,centerY,width,height,pWidth,pHeight,name,sizeGrid,sizeGridBorder,url,urlBorder,skin,label,color,labelColors,labelBold,labelStroke,text,size,align,asPassword,labelSize,stroke</props>
+	<props>x,y,px,py,left,right,top,bottom,centerX,centerY,width,height,pWidth,pHeight,name,sizeGrid,sizeGridBorder,url,urlBorder,skin,label,color,labelColors,labelBold,labelStroke,text,size,align,asPassword,labelSize,stroke,type,anchorX,anchorY,visible,labelSkin</props>
 </root>

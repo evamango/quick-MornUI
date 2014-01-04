@@ -32,8 +32,8 @@ function MButton:ctor(props,parent)
 	self:updateProps(props,parent)
 end
 
-function MButton:updateProps( props,parent )
-	self:getComponent(".MUIProtocol").updateProps(self,props,parent)
+function MButton:updateProps(props,parent)
+	self:getComponent("MUIProtocol"):updateProps(props,parent)
 
 
 	-- label

@@ -1,0 +1,6 @@
+<lib>
+  <bitmapdata class="png.login.font_login" file="D:\quick-MornUI\MornProj\morn\assets\login\font_login.png" compression="false" quality="80" create="13887186598513972"/>
+  <bitmapdata class="png.login.font_login_2" file="D:\quick-MornUI\MornProj\morn\assets\login\font_login_2.png" compression="false" quality="80" create="13887194737383239"/>
+  <bitmapdata class="png.login.font_svr" file="D:\quick-MornUI\MornProj\morn\assets\login\font_svr.png" compression="false" quality="80" create="13887200592573053"/>
+  <bitmapdata class="png.login.font_uid" file="D:\quick-MornUI\MornProj\morn\assets\login\font_uid.png" compression="false" quality="80" create="13887186990302904"/>
+</lib>

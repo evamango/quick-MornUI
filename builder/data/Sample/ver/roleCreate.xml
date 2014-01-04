@@ -1,0 +1,14 @@
+<lib>
+  <bitmapdata class="png.roleCreate.btn_dice" file="D:\quick-MornUI\MornProj\morn\assets\roleCreate\btn_dice.png" compression="false" quality="80" create="138874226361513181"/>
+  <bitmapdata class="png.roleCreate.font_create" file="D:\quick-MornUI\MornProj\morn\assets\roleCreate\font_create.png" compression="false" quality="80" create="13887423008053082"/>
+  <bitmapdata class="png.roleCreate.font_createRole" file="D:\quick-MornUI\MornProj\morn\assets\roleCreate\font_createRole.png" compression="false" quality="80" create="13887421432485661"/>
+  <bitmapdata class="png.roleCreate.font_cr_desc_shu" file="D:\quick-MornUI\MornProj\morn\assets\roleCreate\font_cr_desc_shu.png" compression="false" quality="80" create="13887431338596093"/>
+  <bitmapdata class="png.roleCreate.font_cr_desc_wei" file="D:\quick-MornUI\MornProj\morn\assets\roleCreate\font_cr_desc_wei.png" compression="false" quality="80" create="13887432008185971"/>
+  <bitmapdata class="png.roleCreate.font_cr_desc_wu" file="D:\quick-MornUI\MornProj\morn\assets\roleCreate\font_cr_desc_wu.png" compression="false" quality="80" create="13887432459525838"/>
+  <bitmapdata class="png.roleCreate.font_name" file="D:\quick-MornUI\MornProj\morn\assets\roleCreate\font_name.png" compression="false" quality="80" create="13887421811542615"/>
+  <bitmapdata class="png.roleCreate.font_wei" file="D:\quick-MornUI\MornProj\morn\assets\roleCreate\font_wei.png" compression="false" quality="80" create="13887428655403357"/>
+  <bitmapdata class="png.roleCreate.font_wu" file="D:\quick-MornUI\MornProj\morn\assets\roleCreate\font_wu.png" compression="false" quality="80" create="13887428655403357"/>
+  <bitmapdata class="png.roleCreate.font_zy" file="D:\quick-MornUI\MornProj\morn\assets\roleCreate\font_zy.png" compression="false" quality="80" create="13887428655403357"/>
+  <bitmapdata class="png.roleCreate.img_magic_circle" file="D:\quick-MornUI\MornProj\morn\assets\roleCreate\img_magic_circle.png" compression="false" quality="80" create="138874281543584868"/>
+  <bitmapdata class="png.roleCreate.radio_s1" file="D:\quick-MornUI\MornProj\morn\assets\roleCreate\radio_s1.png" compression="false" quality="80" create="138874404119375922"/>
+</lib>

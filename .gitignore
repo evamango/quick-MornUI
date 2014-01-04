@@ -218,4 +218,9 @@ pip-log.txt
 .svn
 
 #flash builder
-*.actionScriptProperties
+.actionScriptProperties
+.flexLibProperties
+
+
+#proj
+proj.android/

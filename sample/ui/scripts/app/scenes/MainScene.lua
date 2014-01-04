@@ -4,14 +4,20 @@ local MainScene = class("MainScene", function()
 end)
 
 function MainScene:ctor()
-    -- ui.newTTFLabel({text = "Hello, World", size = 64, align = ui.TEXT_ALIGN_CENTER})
-    --     :pos(display.cx, display.cy)
-    --     :addTo(self)
+     --添加UI管理组件--
+    cc.GameObject.extend(self)
+    self:addComponent("UISceneProtocol"):exportMethods()
+
+    --面板打开/关闭测试
     self.main = MUtil.getUIByName("Main"):addTo(self)
+    self.main:setData({
+        btnOpen1 = "打开面板",
+        btnOpen2 = "切换到场景2",
+        })
 
     self.main.btnOpen1:onButtonClicked(function()
         print("show Panel!")
-        UIManager.showPanel("PanelSample")
+        self:showPanel("PanelSample")
     end)
 
     self.main.btnOpen2:onButtonClicked(function()
